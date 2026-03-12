@@ -147,10 +147,13 @@ adkweb() {
   [ -n "$pids" ] && kill $pids && sleep 2
 
   echo "Starting ADK web server..."
+  local LOG_FILE="adk_web_server.log"
   # Use uv run adk web to start the server
   # We point it to api/agents directory. Note: each subdir should have __init__.py and agent.py
-  nohup uv run adk web --port 8001 api/agents > output.log 2>&1 &
-  echo "ADK web server started in background on port 8001. Check output.log for details."
+  nohup uv run adk web --port 8001 api/agents > "$LOG_FILE" 2>&1 &
+  echo "ADK web server started in background. Tailing $LOG_FILE..."
+  echo "Press Ctrl+C to stop tailing (the server will continue to run)."
+  tail -f "$LOG_FILE"
 }
 
 export PATH=$PATH:$HOME/.local/bin:.scripts

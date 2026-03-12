@@ -18,7 +18,7 @@ Workflow agent for pharma regulatory compliance (the original Sentinel workflow)
 
 from google.adk.agents import LlmAgent
 from api.config import settings
-from api.agents.experts.compliance import regulatory_agent
+from api.agents.lifesciences.experts.compliance import regulatory_agent
 
 sentinel_workflow = LlmAgent(
     name="SentinelWorkflow",

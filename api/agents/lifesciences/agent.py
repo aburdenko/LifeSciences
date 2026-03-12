@@ -18,15 +18,15 @@ Central Platform Coordinator for Life Sciences workflows.
 
 from google.adk.agents import LlmAgent
 from api.config import settings
-from api.agents.workflows.protein_folding import protein_folding_workflow
-from api.agents.workflows.pathway_analysis import pathway_analysis_workflow
-from api.agents.workflows.sentinel import sentinel_workflow
-from api.agents.experts.literature import literature_agent
-from api.agents.experts.scientific_db import scientific_db_agent
+from api.agents.lifesciences.workflows.protein_folding import protein_folding_workflow
+from api.agents.lifesciences.workflows.pathway_analysis import pathway_analysis_workflow
+from api.agents.lifesciences.workflows.sentinel import sentinel_workflow
+from api.agents.lifesciences.experts.literature import literature_agent
+from api.agents.lifesciences.experts.scientific_db import scientific_db_agent
 
 # Define the Life Sciences Platform Agent
 # This is the root agent that understands the user's intent and delegates to the correct workflow.
-sentinel_coordinator = LlmAgent(
+root_agent = LlmAgent(
     name="LifeSciencesPlatform",
     model=settings.gemini_model_powerful,
     description="The central coordinator for Google Cloud Life Sciences Platform. Routes to specialized scientific workflows.",

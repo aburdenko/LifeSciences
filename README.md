@@ -1,20 +1,34 @@
-# Sentinel: Pharma Ad Content Checker
+# Sentinel: Google Cloud Life Sciences Agentic Platform
 
-Sentinel is content analysis starter code to support pharmaceutical regulatory affairs and marketing teams. Sentinel starter code can be used as a starting point to construct more efficient workflow applications in the Pharma Industry. Leveraging the power of Google Gemini AI, Sentinel code can help build automation workflows for the review process for promotional advertisements. Its core function is to flag potential issues, verify citation integrity, and check adherence to established industry standards, thereby identifying and annotating areas for expert review. 
+Sentinel has been transformed into a comprehensive, multi-workflow agentic platform for Life Sciences research, drug discovery, and regulatory compliance. Optimized for **Google Cloud**, it leverages the **Agent Development Kit (ADK)** and **Gemini 3** to orchestrate complex scientific tasks.
 
-**Key Features and Functionality:**
+**Core Scientific Workflows:**
 
-*   **Pharma Ad Video Checker:** Sentinel code performs analysis of video advertisements. It is designed to identify and flag potential issues, providing timestamped markers to facilitate precise editing and review.
-*   **Ad Infographic Checker:** The code offers capabilities for reviewing advertisements, and infographics. It provides annotations that highlight potential issues hence speeding up the checking process.
-*   **Interactive Professional User Interface (UI):** Sentinel features a clean, efficient interface. This UI provides regulatory and marketing teams with real-time feedback and generates reports, enhancing workflow efficiency and transparency using the Sentinel code.
+*   **Protein Folding & Simulation:** Specialized workflow using **AlphaFold on Vertex AI** for high-accuracy protein structure prediction and molecular dynamics.
+*   **Pathway Analysis & Network Modeling:** Bioinformatics workflow for gene enrichment analysis and biological knowledge graph queries powered by **BigQuery**.
+*   **Pharmaceutical Regulatory Review (Sentinel Core):** Advanced compliance checking for pharma advertisements and promotional materials (FDA/EMA standards).
+*   **Biomedical Literature Discovery:** Expert agents for deep-dive research across **PubMed** and unstructured data via **Vertex AI Search**.
 
-**Target Users:**
+**Key Features:**
 
-Sentinel code is designed for pharmaceutical regulatory affairs and marketing teams responsible for checking promotional materials.
+*   **Multi-Agent Orchestration:** A central `LifeSciencesPlatform` coordinator that intelligently routes requests to domain-specific workflows.
+*   **GCP Native Tools:** Direct integration with Vertex AI (AlphaFold, Gemini), BigQuery, and Discovery Engine.
+*   **Streaming Agentic Chat:** Real-time, asynchronous interaction with agents via a specialized FastAPI backend.
+*   **Extensible Architecture:** Easily add new scientific workflows or expert agents as research needs evolve.
 
-**Technology and Architecture:**
+**Technology Stack:**
 
-Sentinel code is built with a FastAPI (Python) backend, an HTML/CSS/JavaScript frontend utilizing Google Material Design, and integrates with the Google Gemini AI API for its analytical capabilities. It is designed for deployment on Cloud Run.
+*   **Backend:** FastAPI, Google ADK, GenAI SDK.
+*   **AI Models:** Gemini 3 Powerful (Pro) on Vertex AI.
+*   **Infrastructure:** Cloud Run, Vertex AI Endpoints, GCS, BigQuery.
+*   **Frontend:** React with Material Design.
+
+**Life Science Tools Integrated:**
+
+*   **PubMed Tool:** Real-time search and abstract retrieval from NCBI.
+*   **ChEMBL Tool:** Molecular property and bioactivity data lookup.
+*   **Vertex AI Search Tool:** Optimized grounding and search over large medical datasets.
+*   **Regulatory Review Tool:** Specialized prompts for FDA/EMA compliance checking.
 
 **Important Note:**
 
@@ -140,16 +154,15 @@ The application is containerized using a multi-stage Docker build that serves th
 ```
 sentinel/
 ├── api/                    # FastAPI backend
-│   ├── routes/            # API route handlers (analysis, storage, health)
-│   ├── services/          # Business logic (Gemini client, analyzer service)
+│   ├── agents/            # ADK Agents (Coordinator, Literature, DB, Compliance)
+│   ├── routes/            # API route handlers (analysis, agents, storage, health)
+│   ├── services/          # Business logic (Agent service, Gemini client, analyzer)
+│   ├── tools/             # Specialized tools (PubMed, ChEMBL, Vertex Search)
 │   ├── models/            # Pydantic schemas
 │   ├── config.py          # Configuration management
 │   └── main.py            # FastAPI application entry point
 ├── tests/                  # Unit test suite
 ├── frontend/              # React frontend
-│   ├── src/               # TypeScript source files
-│   ├── public/            # Static assets
-│   └── index.html         # SPA entry point
 ├── Dockerfile              # Multi-stage Docker build
 ├── pyproject.toml         # Python dependencies and metadata
 └── README.md               # This file
@@ -157,12 +170,12 @@ sentinel/
 
 ## API Endpoints
 
-- `GET /health` - Health check
+- `POST /agents/chat` - Interact with the agentic coordinator (Streaming)
 - `POST /api/v1/analyze` - Analyze video (URL) or image (URL)
 - `POST /api/v1/analyze/upload` - Analyze uploaded image file
 - `GET /api/v1/storage/list` - List files in GCS
 - `POST /api/v1/storage/upload` - Upload file to GCS
-- `GET /api/v1/storage/file/{path}` - Retrieve/stream file from GCS
+- `GET /health` - Health check
 
 ## Usage
 

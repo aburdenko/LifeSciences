@@ -16,8 +16,10 @@
 API route handlers.
 """
 
+from api.routes.agents import router as agents_router
 from api.routes.analysis import router as analysis_router
 from api.routes.health import router as health_router
 from api.routes.storage import router as storage_router
 
-__all__ = ["analysis_router", "health_router", "storage_router"]
+__all__ = ["health_router", "analysis_router", "storage_router", "agents_router"]
+

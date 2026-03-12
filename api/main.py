@@ -30,7 +30,7 @@ from google.cloud import storage
 
 from api import __version__
 from api.config import settings
-from api.routes import analysis_router, health_router, storage_router
+from api.routes import analysis_router, health_router, storage_router, agents_router
 from api.services.gemini_client import GeminiClient
 
 # Configure logging
@@ -106,6 +106,7 @@ app.add_middleware(
 app.include_router(health_router)
 app.include_router(analysis_router)
 app.include_router(storage_router)
+app.include_router(agents_router)
 
 # Mount static files if directory exists (for Docker build)
 # We check if /app/static exists (Docker) or fallback to local development path if needed

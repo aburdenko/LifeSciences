@@ -17,6 +17,7 @@ import logging
 from fastapi import Depends, Request
 from google.cloud import storage
 
+from api.services.agent_service import AgentService
 from api.services.analyzer_service import AnalyzerService
 from api.services.gemini_client import GeminiClient
 
@@ -46,3 +47,14 @@ def get_analyzer_service(
 ) -> AnalyzerService:
     """Dependency for getting an AnalyzerService instance with the shared client."""
     return AnalyzerService(gemini_client=client)
+
+
+def get_agent_service(request: Request) -> AgentService:
+    """Dependency for getting the shared Agent service."""
+    service = getattr(request.app.state, "agent_service", None)
+    if service is None:
+        # Initialize if not already present in app state
+        from api.services.agent_service import AgentService
+        service = AgentService()
+        request.app.state.agent_service = service
+    return service

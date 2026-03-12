@@ -59,34 +59,31 @@ For technical details on how to configure these settings, please refer to the of
    cd LifeSciences
    ```
 
-2. **Backend Setup**:
+2. **Environment Configuration**:
+   
+   Copy `.env.example` to `.env` and fill in the required values.
+   
    ```bash
-   # Create and activate a virtual environment
-   uv venv --python "python3.12" ".venv"
-   source .venv/bin/activate
-
-   # Install all dependencies
-   uv sync --all-extras
+   cp .env.example .env
    ```
 
-3. **Frontend Setup**:
+   **Required for Agents:**
+   *   `GCP_USER_ACCOUNT`: Your Google account email (required for `adkweb`).
+   *   `GOOGLE_CLOUD_PROJECT`: Your GCP Project ID.
+
+3. **Backend & Tooling Setup**:
+   
+   Run the configuration script to set up the nested `uv` environment (`.venv/python312`) and install dependencies:
+
+   ```bash
+   source .scripts/configure.sh
+   ```
+
+4. **Frontend Setup**:
    ```bash
    cd frontend
    npm install
    ```
-
-4. **Configure Environment Variables**:
-   
-   Copy `.env.example` to `.env`.
-
-   * **Vertex AI (Recommended)**:
-      * Set `GOOGLE_GENAI_USE_VERTEXAI=true`.
-      * Set `GOOGLE_CLOUD_PROJECT` and `GOOGLE_CLOUD_LOCATION`.
-      * Set `GCS_BUCKET_NAME` for image features.
-      * Authenticate: `gcloud auth application-default login`.
-
-   * **AI Studio**:
-      * Set `GEMINI_API_KEY`.
 
 5. **Run the Development Servers**:
 
@@ -95,6 +92,12 @@ For technical details on how to configure these settings, please refer to the of
       uv run python -m api.main
       ```
       The API will run at `http://localhost:8000`.
+
+   * **ADK Web UI** (for Agent testing):
+      ```bash
+      adkweb
+      ```
+      The Agent UI will be available at `http://localhost:8001`.
 
    * **Frontend**:
       ```bash

@@ -73,3 +73,5 @@ data/
 # Vercel
 .vercel
 *.vercel
+*.pdf
+*.skill

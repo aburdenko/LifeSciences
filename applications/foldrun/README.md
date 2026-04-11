@@ -1,10 +1,8 @@
-<p align="center">
-  <a href="https://youtu.be/umTLrEF5L7A"><img src="foldrun-sticker.svg" alt="FoldRun" width="200"/></a>
-</p>
+<a href="https://youtu.be/umTLrEF5L7A"><img src="foldrun-sticker.svg" alt="FoldRun" width="150" align="left" style="margin-right:16px;margin-bottom:8px;"/></a>
 
-FoldRun is an AI-powered orchestration platform for protein structure prediction on Google Cloud. It provides a conversational interface that manages the entire lifecycle — from sequence input to structural validation — using Gemini and Google Agent Engine.
+**FoldRun** is an AI-powered orchestration platform for protein structure prediction on Google Cloud. It provides a conversational interface that manages the entire lifecycle — from sequence input to structural validation — using Gemini and Google Agent Engine. Supports multiple structure prediction models (AlphaFold2, OpenFold3, Boltz) via a plugin architecture with shared infrastructure.
 
-Supports multiple structure prediction models (AlphaFold2, OpenFold3, Boltz) via a plugin architecture with shared infrastructure.
+<br clear="left"/>
 
 ## Features
 
